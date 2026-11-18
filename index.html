@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6898176272342462"
+     crossorigin="anonymous">
+  </script>
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7f8fa" />
+  <meta name="description" content="ZePOS adalah aplikasi kasir lokal dan offline untuk membantu bisnis mengelola transaksi, stok, dan laporan dengan mudah." />
+  <title>ZePOS — Kasir Lokal, Bisnis Tetap Lancar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --ink: #141923;
+      --muted: #687181;
+      --line: #e7eaf0;
+      --blue: #356df3;
+      --blue-dark: #2456d8;
+      --blue-soft: #edf3ff;
+      --green: #18a875;
+      --radius: 22px;
+      --shadow: 0 24px 70px rgba(20, 35, 70, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0; background: var(--bg); color: var(--ink);
+      font-family: "DM Sans", sans-serif; -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
+      background-image: linear-gradient(rgba(35,55,90,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(35,55,90,.025) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .container { width: min(1160px, calc(100% - 44px)); margin: auto; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 9px; color: var(--blue);
+      font-size: 12px; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; border-radius: 2px; }
+    .section { padding: 104px 0; }
+    .section-heading { max-width: 680px; margin-bottom: 48px; }
+    .section-heading h2 {
+      margin: 15px 0 14px; font: 800 clamp(32px, 4vw, 48px)/1.12 Manrope, sans-serif;
+      letter-spacing: -.045em;
+    }
+    .section-heading p { color: var(--muted); font-size: 16px; line-height: 1.8; margin: 0; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border: 0; border-radius: 12px; padding: 14px 20px; font-weight: 700;
+      transition: transform .25s, box-shadow .25s, background .25s; cursor: pointer;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary { color: white; background: var(--blue); box-shadow: 0 10px 24px rgba(53,109,243,.23); }
+    .btn-primary:hover { background: var(--blue-dark); box-shadow: 0 14px 30px rgba(53,109,243,.3); }
+    .btn-light { background: white; border: 1px solid var(--line); color: var(--ink); }
+    .btn-light:hover { box-shadow: 0 10px 24px rgba(20,35,70,.08); }
+    .nav {
+      height: 76px; position: sticky; top: 0; z-index: 100; background: rgba(247,248,250,.82);
+      backdrop-filter: blur(18px); border-bottom: 1px solid rgba(220,225,235,.75);
+    }
+    .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font: 800 22px Manrope, sans-serif; letter-spacing: -.06em; }
+    .brand-mark {
+      width: 32px; height: 32px; border-radius: 10px 10px 10px 3px; display: grid; place-items: center;
+      color: white; background: var(--blue); box-shadow: 0 5px 12px rgba(53,109,243,.25);
+    }
+    .brand-mark svg { width: 19px; height: 19px; }
+    .nav-links { display: flex; align-items: center; gap: 30px; color: #586171; font-size: 13px; font-weight: 700; }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .nav-actions .btn { padding: 11px 17px; font-size: 13px; }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: white; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; }
+    .hero { padding: 92px 0 76px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: .94fr 1.06fr; align-items: center; gap: 52px; }
+    .hero-copy { position: relative; z-index: 2; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
+      border: 1px solid #dce6ff; background: #f0f5ff; color: #315fc9; font-size: 11px; font-weight: 800;
+    }
+    .pulse { width: 7px; height: 7px; border-radius: 50%; background: #21b77c; box-shadow: 0 0 0 4px rgba(33,183,124,.12); }
+    h1 { margin: 23px 0 20px; font: 800 clamp(42px, 5.2vw, 66px)/1.06 Manrope, sans-serif; letter-spacing: -.065em; }
+    h1 span { color: var(--blue); }
+    .hero-copy > p { max-width: 520px; color: var(--muted); font-size: 16px; line-height: 1.85; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin: 30px 0 28px; }
+    .hero-points { display: flex; flex-wrap: wrap; gap: 18px; color: #697384; font-size: 12px; font-weight: 700; }
+    .hero-points span { display: inline-flex; align-items: center; gap: 7px; }
+    .check { color: var(--green); font-weight: 900; }
+    .hero-visual { min-width: 0; position: relative; perspective: 1000px; }
+    .glow {
+      position: absolute; width: 80%; height: 80%; top: 10%; left: 10%; border-radius: 50%;
+      background: #a9c2ff; filter: blur(85px); opacity: .48;
+    }
+    .dashboard {
+      position: relative; z-index: 1; padding: 10px; border: 1px solid #e1e5ed; border-radius: 20px;
+      background: rgba(255,255,255,.86); box-shadow: 0 35px 90px rgba(39,65,120,.18);
+      transform: rotateY(-8deg) rotateX(3deg); transition: transform .6s ease;
+    }
+    .hero-visual:hover .dashboard { transform: rotateY(0) rotateX(0) translateY(-5px); }
+    .windowbar { height: 31px; display: flex; align-items: center; gap: 6px; padding: 0 9px 8px; color: #9aa2af; font-size: 9px; font-weight: 700; }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #d8dde6; }
+    .window-title { margin-left: 8px; }
+    .hero-screenshot-wrap { overflow: hidden; border: 1px solid #e5eaf2; border-radius: 12px; background: #fff; }
+    .hero-screenshot { display: block; width: 100%; height: auto; object-fit: contain; }
+
+    .app-screen { min-height: 360px; display: grid; grid-template-columns: 130px 1fr; overflow: hidden; border-radius: 12px; background: #f6f8fc; border: 1px solid #edf0f5; }
+    .sidebar { background: #17243b; padding: 17px 12px; color: #aebbd0; }
+    .side-logo { color: white; font: 800 14px Manrope; margin: 0 0 26px 7px; }
+    .side-item { padding: 10px 9px; margin: 4px 0; border-radius: 7px; font-size: 9px; }
+    .side-item.active { color: white; background: #2e65e8; }
+    .app-main { padding: 20px; min-width: 0; }
+    .app-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 17px; }
+    .app-top strong { font: 800 15px Manrope; }
+    .avatar { width: 25px; height: 25px; border-radius: 50%; background: #dce7ff; }
+    .stat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px; }
+    .stat { padding: 12px; background: white; border: 1px solid #edf0f5; border-radius: 9px; }
+    .stat small { display: block; color: #8993a3; font-size: 8px; }
+    .stat b { display: block; font: 800 13px Manrope; margin-top: 6px; }
+    .stat em { color: #18a875; font-size: 8px; font-style: normal; }
+    .app-lower { display: grid; grid-template-columns: 1.3fr .7fr; gap: 9px; margin-top: 10px; }
+    .panel { background: white; border: 1px solid #edf0f5; border-radius: 9px; padding: 13px; min-width: 0; }
+    .panel-title { font-size: 9px; font-weight: 800; margin-bottom: 15px; }
+    .chart { height: 105px; display: flex; align-items: end; gap: 8px; padding: 0 5px; border-bottom: 1px solid #edf0f5; }
+    .bar { flex: 1; border-radius: 4px 4px 0 0; background: #dce7ff; animation: barIn .9s both; transform-origin: bottom; }
+    .bar:nth-child(2n) { background: #5685f5; }
+    .bar:nth-child(1) { height: 34%; }.bar:nth-child(2) { height: 57%; }.bar:nth-child(3) { height: 43%; }
+    .bar:nth-child(4) { height: 78%; }.bar:nth-child(5) { height: 61%; }.bar:nth-child(6) { height: 92%; }.bar:nth-child(7) { height: 72%; }
+    .product-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f2f6; font-size: 8px; color: #667184; }
+    .product-row b { color: #222b3a; }
+    .floating-tag {
+      position: absolute; z-index: 2; right: -18px; bottom: 25px; background: white; padding: 13px 16px;
+      border: 1px solid #e9edf4; border-radius: 13px; box-shadow: 0 14px 35px rgba(24,45,85,.13);
+      display: flex; align-items: center; gap: 10px; animation: float 4s ease-in-out infinite;
+    }
+    .floating-icon { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: #e9f9f2; color: #159d70; font-size: 17px; }
+    .floating-tag b { display: block; font-size: 11px; }.floating-tag small { color: var(--muted); font-size: 9px; }
+    .trust { padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: rgba(255,255,255,.6); }
+    .trust-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .trust-label { color: #8b94a2; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .trust-item { display: flex; align-items: center; gap: 9px; color: #3e4858; font-size: 12px; font-weight: 700; }
+    .trust-icon { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 9px; background: var(--blue-soft); color: var(--blue); }
+    .features-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .feature-card {
+      padding: 25px; background: white; border: 1px solid var(--line); border-radius: 17px;
+      transition: transform .3s, box-shadow .3s, border-color .3s;
+    }
+    .feature-card:hover { transform: translateY(-6px); border-color: #cbd9ff; box-shadow: 0 18px 38px rgba(35,65,125,.08); }
+    .feature-icon { width: 43px; height: 43px; border-radius: 13px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); font-size: 19px; margin-bottom: 20px; }
+    .feature-card h3 { font: 800 16px Manrope; margin: 0 0 9px; }
+    .feature-card p { color: var(--muted); font-size: 13px; line-height: 1.75; margin: 0; }
+    .offline-section { background: #142139; color: white; position: relative; overflow: hidden; }
+    .offline-section::before { content: ""; position: absolute; width: 500px; height: 500px; border-radius: 50%; right: -100px; top: -220px; background: #2856b8; filter: blur(100px); opacity: .45; }
+    .offline-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; position: relative; }
+    .offline-section .eyebrow { color: #8eb0ff; }
+    .offline-section h2 { font: 800 clamp(34px,4vw,49px)/1.12 Manrope; letter-spacing: -.05em; margin: 16px 0; }
+    .offline-section p { color: #bac5d7; line-height: 1.85; font-size: 15px; }
+    .offline-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 28px; }
+    .offline-point { display: flex; align-items: center; gap: 10px; color: #e4eaf4; font-size: 12px; font-weight: 700; }
+    .offline-point span { color: #7ee0b8; font-size: 17px; }
+    .offline-card { padding: 28px; border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.07); backdrop-filter: blur(10px); }
+    .offline-status { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid rgba(255,255,255,.13); }
+    .offline-status strong { font: 800 14px Manrope; }
+    .status-badge { color: #8cf0c4; background: rgba(49,195,139,.13); padding: 7px 10px; border-radius: 99px; font-size: 10px; font-weight: 800; }
+    .offline-metric { display: flex; align-items: center; gap: 15px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .offline-metric:last-child { border: 0; padding-bottom: 0; }
+    .metric-icon { width: 42px; height: 42px; border-radius: 12px; background: rgba(120,160,255,.15); display: grid; place-items: center; color: #a9c4ff; font-size: 19px; }
+    .offline-metric b { display: block; font-size: 13px; }.offline-metric small { color: #aab7ca; font-size: 11px; }
+    .migration { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .import-visual { background: white; border: 1px solid var(--line); border-radius: 20px; padding: 24px; box-shadow: var(--shadow); }
+    .excel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+    .excel-head b { font: 800 15px Manrope; }.excel-badge { color: #16865f; background: #e9f8f1; padding: 7px 10px; border-radius: 8px; font-size: 10px; font-weight: 800; }
+    .sheet { border: 1px solid #e8edf2; border-radius: 9px; overflow: hidden; font-size: 10px; }
+    .sheet-row { display: grid; grid-template-columns: .7fr 1.5fr 1fr 1fr; }
+    .sheet-row span { padding: 11px 9px; border-right: 1px solid #edf0f3; border-bottom: 1px solid #edf0f3; color: #667184; }
+    .sheet-row:first-child span { background: #f3f6fb; color: #303b4c; font-weight: 800; }
+    .sheet-row:last-child span { border-bottom: 0; }
+    .import-arrow { text-align: center; padding: 13px; color: var(--blue); font-size: 20px; }
+    .import-success { display: flex; align-items: center; justify-content: space-between; padding: 13px; border-radius: 10px; background: #effaf5; color: #16865f; font-size: 11px; font-weight: 800; }
+    .migration-copy h2 { font: 800 clamp(32px,4vw,46px)/1.14 Manrope; letter-spacing: -.05em; margin: 16px 0; }
+    .migration-copy p { color: var(--muted); line-height: 1.85; font-size: 15px; }
+    .migration-copy ul { padding: 0; list-style: none; display: grid; gap: 12px; margin: 23px 0 0; }
+    .migration-copy li { display: flex; gap: 10px; color: #465164; font-size: 13px; font-weight: 700; }
+    .showcase { background: #f1f4f9; }
+    .showcase .section-heading { margin-inline: auto; text-align: center; }
+    .showcase .section-heading .eyebrow { justify-content: center; }
+    .showcase-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 auto 18px; }
+    .tab-btn { border: 1px solid #dce2ec; background: white; color: #687181; border-radius: 9px; padding: 10px 14px; font-size: 12px; font-weight: 800; cursor: pointer; transition: .2s; }
+    .tab-btn.active { background: #e7f2ff; color: #2674cf; border-color: #b9d6f5; box-shadow: none; }
+    .showcase-frame { width: min(870px,100%); margin: 0 auto; padding: 10px; background: rgba(255,255,255,.96); border: 1px solid #dfe5ef; border-radius: 19px; box-shadow: 0 35px 90px rgba(39,65,120,.13); }
+    .showcase-toolbar { height: 40px; display:flex; align-items:center; gap:8px; padding:0 9px 9px; color:#596474; font-size:10px; }
+    .showcase-toolbar .pos-brandmark { flex:0 0 22px; }
+    .showcase-toolbar .pos-nav { gap:5px; }
+    .showcase-toolbar .pos-nav-item { padding:8px 9px; }
+    .showcase-screen { min-height: 285px; display: grid; place-items: center; border-radius: 0 0 11px 11px; background: #fbfcfe; border-top:1px solid #edf0f4; overflow: hidden; }
+    .showcase-content { width: 100%; display: none; animation: fadeUp .35s both; }
+    .showcase-content.active { display: block; }
+    .demo-window { background: transparent; border: 0; border-radius: 0; padding: 18px 12px; box-shadow: none; }
+    .demo-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+    .demo-top b { font: 800 16px Manrope; letter-spacing:-.03em; }.demo-chip { font-size: 9px; background: #e6f6ee; color: #187b50; padding: 7px 10px; border-radius: 99px; font-weight: 800; }
+    .demo-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
+    .demo-kpi { background: white; border: 1px solid #dfe5ef; border-radius: 9px; padding: 15px; }
+    .demo-kpi small { color: #8490a0; font-size: 10px; }.demo-kpi strong { display: block; margin-top: 7px; font: 800 18px Manrope; }
+    .demo-table { margin-top: 13px; border: 1px solid #dfe5ef; border-radius: 9px; overflow: hidden; background:#fff; }
+    .demo-line { display: flex; justify-content: space-between; gap:12px; padding: 11px 13px; font-size: 11px; border-bottom: 1px solid #edf0f5; color: #626d7e; }
+    .demo-line:first-child { background: #f7f9fc; color: #344054; font-weight: 800; }.demo-line:last-child { border: 0; }
+    @media(max-width:600px) { .showcase-toolbar .pos-nav-item { padding:7px 5px; font-size:0; } .showcase-toolbar .pos-nav-item span { font-size:10px; } .showcase-screen { min-height:260px; } .demo-window { padding:14px 7px; } .demo-kpi { padding:10px; } .demo-kpi strong { font-size:14px; } .demo-line { font-size:9px; padding:9px 8px; } }
+    .pricing-wrap { display: grid; grid-template-columns: 1fr .9fr; gap: 50px; align-items: center; }
+    .pricing-copy h2 { font: 800 clamp(34px,4vw,48px)/1.12 Manrope; letter-spacing: -.05em; margin: 16px 0; }
+    .pricing-copy p { color: var(--muted); line-height: 1.8; font-size: 15px; }
+    .pricing-card { position: relative; background: white; border: 1px solid #dfe6f3; border-radius: 22px; padding: 32px; box-shadow: 0 24px 65px rgba(30,65,135,.12); overflow: hidden; }
+    .pricing-card::before { content: ""; position: absolute; width: 170px; height: 170px; border-radius: 50%; right: -80px; top: -90px; background: #edf3ff; }
+    .limited { position: relative; display: inline-flex; background: #fff2e8; color: #d66b25; border-radius: 7px; padding: 7px 10px; font-size: 10px; font-weight: 900; letter-spacing: .08em; }
+    .price-label { color: var(--muted); font-size: 12px; margin: 23px 0 8px; }
+    .old-price { color: #a0a7b3; font-size: 17px; text-decoration: line-through; }
+    .price { font: 800 52px/1.1 Manrope; letter-spacing: -.06em; margin: 3px 0; }
+    .saving { display: inline-block; color: #16865f; background: #eaf8f1; border-radius: 7px; padding: 6px 9px; font-size: 11px; font-weight: 900; }
+    .price-divider { height: 1px; background: var(--line); margin: 23px 0; }
+    .included { display: grid; gap: 12px; margin: 0 0 25px; padding: 0; list-style: none; color: #566173; font-size: 12px; font-weight: 700; }
+    .included li { display: flex; gap: 9px; }.included span { color: var(--green); font-weight: 900; }
+    .pricing-card .btn { width: 100%; }
+    .price-note { color: #929baa; text-align: center; font-size: 10px; line-height: 1.6; margin: 13px 0 0; }
+    .faq-list { max-width: 820px; margin: auto; display: grid; gap: 10px; }
+    .faq-item { background: white; border: 1px solid var(--line); border-radius: 13px; overflow: hidden; }
+    .faq-question { width: 100%; padding: 19px 20px; border: 0; background: transparent; display: flex; align-items: center; justify-content: space-between; text-align: left; color: var(--ink); font-weight: 800; font-size: 14px; cursor: pointer; }
+    .faq-question span:last-child { color: var(--blue); font-size: 20px; transition: transform .25s; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+    .faq-answer p { margin: 0; padding: 0 20px 19px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+    .faq-item.open .faq-question span:last-child { transform: rotate(45deg); }
+    .cta-band { padding: 65px 0; background: var(--blue); color: white; text-align: center; position: relative; overflow: hidden; }
+    .cta-band::before,.cta-band::after { content: ""; position: absolute; width: 250px; height: 250px; border: 1px solid rgba(255,255,255,.16); border-radius: 50%; }
+    .cta-band::before { left: -100px; top: -140px; }.cta-band::after { right: -100px; bottom: -170px; }
+    .cta-band h2 { position: relative; font: 800 clamp(30px,4vw,42px)/1.15 Manrope; letter-spacing: -.04em; margin: 0 0 13px; }
+    .cta-band p { position: relative; color: #dce6ff; font-size: 14px; margin: 0 0 25px; }
+    .cta-band .btn { position: relative; background: white; color: var(--blue); }
+    footer { padding: 48px 0 25px; background: #111b2d; color: white; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px; padding-bottom: 35px; }
+    .footer-brand p { color: #9ca9bc; font-size: 12px; line-height: 1.8; max-width: 300px; }
+    footer h4 { margin: 5px 0 17px; font: 800 12px Manrope; }
+    .footer-links { display: grid; gap: 12px; color: #aeb9ca; font-size: 12px; }
+    .footer-links a:hover { color: white; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,.1); padding-top: 20px; display: flex; justify-content: space-between; gap: 20px; color: #8290a5; font-size: 10px; }
+    .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: .1s; }.delay-2 { transition-delay: .2s; }.delay-3 { transition-delay: .3s; }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    @keyframes barIn { from { transform: scaleY(.1); opacity: .3; } to { transform: scaleY(1); opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 55px; }.hero-copy { text-align: center; }
+      .hero-copy > p { margin-inline: auto; }.hero-buttons,.hero-points { justify-content: center; }
+      .hero-visual { width: min(690px,100%); margin: auto; }.dashboard { transform: none; }
+      .offline-grid,.migration,.pricing-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .offline-copy { max-width: 650px; }.pricing-copy { max-width: 650px; }
+      .trust-inner { flex-wrap: wrap; justify-content: center; }.trust-label { width: 100%; text-align: center; }
+    }
+    @media (max-width: 700px) {
+      .container { width: min(100% - 32px, 560px); }
+      .section { padding: 76px 0; }.hero { padding: 66px 0 55px; }
+      .nav-links { display: none; position: absolute; left: 16px; right: 16px; top: 68px; padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: white; box-shadow: var(--shadow); flex-direction: column; align-items: stretch; gap: 0; }
+      .nav-links.open { display: flex; }.nav-links a { padding: 12px; }
+      .nav-actions .btn-light { display: none; }.menu-toggle { display: grid; place-items: center; }
+      h1 { font-size: clamp(40px,12vw,55px); }
+      .app-screen { grid-template-columns: 85px 1fr; min-height: 300px; }.sidebar { padding: 14px 7px; }.side-item { font-size: 8px; padding: 9px 6px; }
+      .app-main { padding: 12px; }.stat { padding: 8px; }.stat b { font-size: 10px; }.stat small { font-size: 7px; }
+      .app-lower { grid-template-columns: 1fr; }.app-lower .panel:last-child { display: none; }
+      .floating-tag { right: -4px; bottom: -25px; }.features-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .feature-card { padding: 18px; }.feature-card h3 { font-size: 14px; }.feature-card p { font-size: 12px; }
+      .offline-list { grid-template-columns: 1fr; }.trust-inner { gap: 15px; }.trust-item { font-size: 10px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }.footer-brand { grid-column: 1/-1; }
+      .footer-bottom { flex-direction: column; }.demo-kpi { padding: 10px; }.demo-kpi strong { font-size: 14px; }
+    }
+    @media (max-width: 430px) {
+      .features-grid { grid-template-columns: 1fr; }.hero-buttons { flex-direction: column; }.hero-buttons .btn { width: 100%; }
+      .price { font-size: 45px; }.pricing-card { padding: 24px; }.showcase-screen { min-height: 290px; }
+      .trust-item { width: calc(50% - 10px); }.nav-actions .btn-primary { padding: 10px 12px; font-size: 11px; }
+    }
+
+    /* Live POS hero: built entirely with HTML/CSS, not a screenshot */
+    .pos-live {
+      position: relative; z-index: 1; padding: 10px; border: 1px solid #dfe5ef;
+      border-radius: 19px; background: rgba(255,255,255,.94);
+      box-shadow: 0 35px 90px rgba(39,65,120,.18);
+      transform: rotateY(-7deg) rotateX(2deg); transition: transform .6s ease;
+    }
+    .hero-visual:hover .pos-live { transform: rotateY(0) rotateX(0) translateY(-5px); }
+    .pos-topbar { height: 39px; display:flex; align-items:center; gap:7px; padding:0 9px 9px; color:#596474; font-size:10px; }
+    .pos-brandmark { width:22px;height:22px;border-radius:7px 7px 7px 2px;background:#6500ee;color:white;display:grid;place-items:center;font-weight:900;margin-right:7px; }
+    .pos-nav { display:flex;align-items:center;gap:5px;flex:1;min-width:0; }
+    .pos-nav-item { display:flex;align-items:center;gap:5px;padding:8px 9px;border-radius:7px;white-space:nowrap;font-size:9px;font-weight:700;color:#4d5968; }
+    .pos-nav-item.active { color:#2674cf;background:#e7f2ff; }
+    .pos-online { white-space:nowrap;padding:7px 9px;border-radius:99px;background:#e4f6ed;color:#187b50;font-size:8px;font-weight:800; }
+    .pos-body { border-top:1px solid #edf0f4;padding:14px 9px 9px;display:grid;grid-template-columns:minmax(0,1fr) 205px;gap:10px;min-height:310px;background:#fbfcfe;border-radius:0 0 11px 11px; }
+    .pos-main { min-width:0; }
+    .pos-heading { display:flex;justify-content:space-between;align-items:center;margin:0 0 10px; }
+    .pos-heading strong { font:800 16px Manrope,sans-serif;letter-spacing:-.04em; }
+    .pos-heading small { color:#16865f;font-size:8px;font-weight:800;background:#e6f6ee;padding:6px 8px;border-radius:99px; }
+    .pos-search { height:34px;border:1px solid #cfd8e5;border-radius:7px;background:#fff;display:flex;align-items:center;gap:8px;padding:0 10px;color:#8b95a3;font-size:9px;margin-bottom:9px; }
+    .pos-cats { display:flex;gap:6px;margin-bottom:10px; }
+    .pos-cat { border:1px solid #cbd7e5;background:#fff;border-radius:7px;padding:6px 9px;font-size:8px;font-weight:700;color:#526071; }
+    .pos-cat.selected { background:#e7f2ff;color:#2674cf;border-color:#b9d6f5; }
+    .pos-products { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px; }
+    .pos-product { min-height:87px;border:1px solid #cbd7e5;border-radius:8px;background:#fff;padding:9px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s; }
+    .pos-product:hover { transform:translateY(-3px);border-color:#78a9ed;box-shadow:0 8px 18px rgba(35,90,170,.10); }
+    .pos-product .stock { align-self:stretch;text-align:center;background:#e8f2ff;color:#2877d0;border-radius:99px;padding:3px;font-size:7px;font-weight:800;margin-bottom:7px; }
+    .pos-product b { font-size:9px;color:#344052;line-height:1.35;font-weight:700; }
+    .pos-product strong { font-size:9px;color:#2674cf;margin-top:4px; }
+    .pos-product small { font-size:7px;color:#7d8998;margin-top:5px; }
+    .pos-product.out { opacity:.65; }
+    .pos-product.out strong { color:#d0443d; }
+    .pos-cart { background:#fff;border-left:1px solid #edf0f4;padding:0 0 0 10px;display:flex;flex-direction:column;min-width:0; }
+    .cart-title { display:flex;align-items:center;justify-content:space-between;font-size:12px;font-weight:800;color:#364253;margin-bottom:7px; }
+    .cart-title small { color:#8b95a3;font-size:8px;font-weight:600; }
+    .cart-items { flex:1;min-height:125px; }
+    .cart-row { padding:8px 0;border-bottom:1px solid #e9edf2;animation:cartPop .3s both; }
+    .cart-row-top { display:flex;justify-content:space-between;gap:5px;font-size:8px;font-weight:700;color:#465264; }
+    .cart-row-bottom { display:flex;justify-content:space-between;align-items:center;margin-top:6px;color:#8a95a4;font-size:7px; }
+    .qty-controls { display:flex;align-items:center;gap:7px;color:#465264;font-size:8px; }
+    .qty-controls button { border:0;background:transparent;color:#586474;font-size:13px;font-weight:800;cursor:pointer;padding:0 2px; }
+    .cart-summary { border-top:1px solid #dce3ec;padding-top:9px;margin-top:8px; }
+    .summary-line { display:flex;justify-content:space-between;color:#788494;font-size:8px;margin:5px 0; }
+    .summary-line.total { color:#202a38;font-size:12px;font-weight:900;padding-top:7px;border-top:1px solid #e6ebf1;margin-top:8px; }
+    .pos-pay { width:100%;border:0;border-radius:6px;background:#438de0;color:white;padding:9px 8px;margin-top:8px;font-size:9px;font-weight:800;cursor:pointer;transition:background .2s,transform .2s; }
+    .pos-pay:hover { background:#2674cf;transform:translateY(-2px); }
+    .pos-toast { position:absolute;left:50%;bottom:17px;transform:translate(-50%,12px);opacity:0;pointer-events:none;background:#17243b;color:#fff;border-radius:99px;padding:8px 13px;font-size:9px;font-weight:700;white-space:nowrap;transition:.25s;z-index:5; }
+    .pos-toast.show { opacity:1;transform:translate(-50%,0); }
+    @keyframes cartPop { from {opacity:0;transform:translateX(8px)} to {opacity:1;transform:translateX(0)} }
+    @media(max-width:900px) { .pos-live {transform:none;} }
+    @media(max-width:600px) {
+      .pos-topbar {gap:4px}.pos-nav-item {padding:7px 5px;font-size:0}.pos-nav-item span {font-size:11px}
+      .pos-body {grid-template-columns:minmax(0,1fr) 145px;gap:7px;padding:10px 6px 7px}
+      .pos-cart {padding-left:7px}.pos-products {grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pos-product {min-height:80px;padding:7px}.pos-cats {gap:3px}.pos-cat {padding:6px;font-size:7px}
+      .pos-heading strong {font-size:13px}.pos-online {font-size:0}.pos-online::after {content:"● OFFLINE";font-size:7px}
+      .cart-title {font-size:10px}.cart-row-top {font-size:7px}.cart-row-bottom {font-size:6px}
+    }
+    @media(max-width:420px) {
+      .pos-body {grid-template-columns:minmax(0,1fr) 125px}
+      .pos-products {grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pos-product b {font-size:8px}.pos-product strong {font-size:8px}
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,*::before,*::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  
+    /* Centered hero composition — spacious, clean and product-led */
+    .brand-logo { width: 40px; height: 40px; display: block; object-fit: contain; }
+    .brand-mark { display: none; }
+    .hero { padding: 24px 0 82px; }
+    .hero-grid.hero-centered {
+      display: flex; flex-direction: column; align-items: center; gap: 66px;
+    }
+    .hero-centered .hero-copy {
+      width: 100%; max-width: 850px; text-align: center; display: flex;
+      flex-direction: column; align-items: center;
+    }
+    .hero-centered .hero-copy > p { max-width: 660px; margin: 0; }
+    .hero-centered h1 { margin: 29px 0 24px; font-size: clamp(46px, 5.2vw, 58px); line-height: 1.04; }
+    .hero-centered .hero-buttons { justify-content: center; margin: 38px 0 28px; }
+    .hero-centered .hero-points { justify-content: center; }
+    .hero-centered .hero-visual { width: min(870px, 100%); margin: 0 auto; }
+    .hero-centered .pos-live { transform: none; }
+    .hero-centered .hero-visual:hover .pos-live { transform: translateY(-4px); }
+    .hero-centered .glow { width: 90%; height: 90%; top: 4%; left: 5%; opacity: .34; }
+    .hero-centered .floating-tag { right: -22px; bottom: -22px; }
+    .pos-brandmark { overflow: hidden; background: transparent; }
+    .pos-brandmark img { width: 100%; height: 100%; object-fit: contain; }
+    @media (max-width: 700px) {
+      .hero { padding: 18px 0 65px; }
+      .hero-grid.hero-centered { gap: 48px; }
+      .hero-centered h1 { font-size: clamp(39px, 9vw, 52px); }
+      .hero-centered .hero-copy > p { font-size: 14px; }
+      .hero-centered .hero-visual { width: 100%; }
+      .hero-centered .floating-tag { right: 0; bottom: -29px; }
+      .brand-logo { width: 36px; height: 36px; }
+    }
+    @media (max-width: 430px) {
+      .hero-centered .hero-points { gap: 10px 14px; }
+      .hero-centered .hero-points span { font-size: 10px; }
+    }
+
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#beranda" aria-label="ZePOS Beranda">
+        <img class="brand-logo" src="LOGO PNG.png" alt="Logo ZePOS" />
+        ZePOS
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#fitur">Fitur</a><a href="#offline">Keunggulan</a><a href="#demo">Tampilan</a><a href="#harga">Harga</a><a href="#faq">FAQ</a><a href="download.html">Download</a>
+      </div>
+      <div class="nav-actions">
+        <a class="btn btn-light" href="#demo">Lihat Demo</a>
+        <a class="btn btn-primary" href="#harga">Beli ZePOS <span>↗</span></a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="beranda">
+    <section class="hero">
+      <div class="container hero-grid hero-centered">
+        <div class="hero-copy">
+          <div class="pill"><span class="pulse"></span> SISTEM KASIR LOKAL & OFFLINE</div>
+          <h1>Bisnis lancar,<br><span>tanpa bergantung</span> internet.</h1>
+          <p>Kelola transaksi, stok barang, hingga laporan keuangan dalam satu aplikasi kasir yang berjalan langsung di komputer Anda. Praktis, cepat, dan siap digunakan setiap hari.</p>
+          <div class="hero-buttons">
+            <a class="btn btn-primary" href="#harga">Dapatkan ZePOS <span>→</span></a>
+            <a class="btn btn-light" href="#demo">Jelajahi Fitur <span>↓</span></a>
+            <a class="btn btn-light" href="download.html">Download Aplikasi <span>↓</span></a>
+          </div>
+          <div class="hero-points">
+            <span><b class="check">✓</b> Berjalan offline</span>
+            <span><b class="check">✓</b> Data lokal</span>
+            <span><b class="check">✓</b> Tanpa biaya server bulanan</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="glow"></div>
+          <div class="pos-live" aria-label="Pratinjau interaktif aplikasi kasir ZePOS">
+            <div class="pos-topbar">
+              <div class="pos-brandmark"><img src="LOGO PNG.png" alt="" /></div>
+              <div class="pos-nav">
+                <div class="pos-nav-item">⌂ <span>Beranda</span></div>
+                <div class="pos-nav-item active">▣ <span>Kasir</span></div>
+                <div class="pos-nav-item">▤ <span>Produk</span></div>
+                <div class="pos-nav-item">▥ <span>Stok</span></div>
+                <div class="pos-nav-item">▥ <span>Laporan</span></div>
+              </div>
+              <div class="pos-online">✓ Mode offline aktif</div>
+            </div>
+            <div class="pos-body">
+              <div class="pos-main">
+                <div class="pos-heading"><strong>Kasir</strong><small>● MODE OFFLINE</small></div>
+                <div class="pos-search"><span>⌕</span> Cari nama, SKU, atau scan barcode</div>
+                <div class="pos-cats">
+                  <button class="pos-cat selected" data-category="Semua">✓ Semua</button>
+                  <button class="pos-cat" data-category="Makanan">Makanan</button>
+                  <button class="pos-cat" data-category="Minuman">Minuman</button>
+                </div>
+                <div class="pos-products" id="posProducts">
+                  <button class="pos-product" data-name="Keripik Singkong" data-price="12000" data-category="Makanan"><span class="stock">17 tersedia</span><b>Keripik Singkong</b><strong>Rp12.000</strong><small>Sisa stok 17</small></button>
+                  <button class="pos-product" data-name="Roti Cokelat" data-price="9000" data-category="Makanan"><span class="stock">11 tersedia</span><b>Roti Cokelat</b><strong>Rp9.000</strong><small>Sisa stok 11</small></button>
+                  <button class="pos-product" data-name="Air Mineral 600 ml" data-price="5000" data-category="Minuman"><span class="stock">34 tersedia</span><b>Air Mineral 600 ml</b><strong>Rp5.000</strong><small>Sisa stok 34</small></button>
+                  <button class="pos-product" data-name="Kopi Susu Gula Aren" data-price="18000" data-category="Minuman"><span class="stock">21 tersedia</span><b>Kopi Susu Gula Aren</b><strong>Rp18.000</strong><small>Sisa stok 21</small></button>
+                  <button class="pos-product" data-name="Sabun Cuci Tangan" data-price="15000" data-category="Rumah"><span class="stock">8 tersedia</span><b>Sabun Cuci Tangan</b><strong>Rp15.000</strong><small>Sisa stok 8</small></button>
+                  <button class="pos-product out" data-name="Tisu Wajah" data-price="10000" data-category="Rumah" disabled><span class="stock">Stok habis</span><b>Tisu Wajah</b><strong>Rp10.000</strong><small>Stok habis</small></button>
+                </div>
+              </div>
+              <aside class="pos-cart">
+                <div class="cart-title">Keranjang <small id="cartCount">3 item</small></div>
+                <div class="cart-items" id="cartItems">
+                  <div class="cart-row" data-name="Kopi Susu Gula Aren"><div class="cart-row-top"><span>Kopi Susu Gula Aren</span><b>Rp54.000</b></div><div class="cart-row-bottom"><span>Rp18.000</span><div class="qty-controls"><button aria-label="Kurangi">−</button><span>3</span><button aria-label="Tambah">＋</button></div></div></div>
+                  <div class="cart-row" data-name="Air Mineral 600 ml"><div class="cart-row-top"><span>Air Mineral 600 ml</span><b>Rp10.000</b></div><div class="cart-row-bottom"><span>Rp5.000</span><div class="qty-controls"><button aria-label="Kurangi">−</button><span>2</span><button aria-label="Tambah">＋</button></div></div></div>
+                  <div class="cart-row" data-name="Roti Cokelat"><div class="cart-row-top"><span>Roti Cokelat</span><b>Rp9.000</b></div><div class="cart-row-bottom"><span>Rp9.000</span><div class="qty-controls"><button aria-label="Kurangi">−</button><span>1</span><button aria-label="Tambah">＋</button></div></div></div>
+                  <div class="cart-row" data-name="Keripik Singkong"><div class="cart-row-top"><span>Keripik Singkong</span><b>Rp12.000</b></div><div class="cart-row-bottom"><span>Rp12.000</span><div class="qty-controls"><button aria-label="Kurangi">−</button><span>1</span><button aria-label="Tambah">＋</button></div></div></div>
+                </div>
+                <div class="cart-summary">
+                  <div class="summary-line"><span>Subtotal</span><b id="cartSubtotal">Rp85.000</b></div>
+                  <div class="summary-line"><span>Diskon</span><b>Rp0</b></div>
+                  <div class="summary-line total"><span>Total</span><b id="cartTotal">Rp85.000</b></div>
+                  <button class="pos-pay" id="posPay">▣ &nbsp; Bayar</button>
+                </div>
+              </aside>
+            </div>
+            <div class="pos-toast" id="posToast">Produk ditambahkan ke keranjang</div>
+          </div>
+          <div class="floating-tag"><div class="floating-icon">✓</div><div><b>Mode Offline Aktif</b><small>Operasional tetap berjalan</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust">
+      <div class="container trust-inner">
+        <div class="trust-label">Dibuat untuk operasional toko</div>
+        <div class="trust-item"><span class="trust-icon">⌁</span> Transaksi cepat</div>
+        <div class="trust-item"><span class="trust-icon">▦</span> Stok terkontrol</div>
+        <div class="trust-item"><span class="trust-icon">▤</span> Laporan praktis</div>
+        <div class="trust-item"><span class="trust-icon">⌘</span> Data lokal</div>
+      </div>
+    </section>
+
+    <section class="section" id="fitur">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Fitur lengkap</span>
+          <h2>Semua kebutuhan toko,<br>dalam satu aplikasi.</h2>
+          <p>Mulai dari melayani pelanggan hingga mengevaluasi performa penjualan. ZePOS membantu pekerjaan operasional jadi lebih ringkas.</p>
+        </div>
+        <div class="features-grid">
+          <article class="feature-card reveal"><div class="feature-icon">▣</div><h3>Kasir & Transaksi</h3><p>Proses penjualan dengan alur yang praktis agar pelayanan pelanggan lebih cepat.</p></article>
+          <article class="feature-card reveal delay-1"><div class="feature-icon">▤</div><h3>Cetak Nota</h3><p>Cetak struk transaksi untuk pelanggan melalui printer yang didukung.</p></article>
+          <article class="feature-card reveal delay-2"><div class="feature-icon">▧</div><h3>Label & Barcode</h3><p>Buat label produk dan manfaatkan barcode untuk mempercepat pencarian barang.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon">▥</div><h3>Manajemen Stok</h3><p>Pantau persediaan, data produk, dan pergerakan barang dengan lebih mudah.</p></article>
+          <article class="feature-card reveal delay-1"><div class="feature-icon">↗</div><h3>Laporan Otomatis</h3><p>Lihat ringkasan penjualan dan laporan operasional tanpa rekap manual berulang.</p></article>
+          <article class="feature-card reveal delay-2"><div class="feature-icon">▱</div><h3>Cash Drawer</h3><p>Dukungan laci uang otomatis melalui printer kasir dan perangkat yang kompatibel.</p></article>
+          <article class="feature-card reveal"><div class="feature-icon">⇧</div><h3>Import Excel</h3><p>Pindahkan daftar produk dari Excel untuk mempercepat proses input barang.</p></article>
+          <article class="feature-card reveal delay-1"><div class="feature-icon">◉</div><h3>Kelola Pendapatan</h3><p>Bantu pantau pemasukan dan ringkasan keuangan toko dari satu tempat.</p></article>
+          <article class="feature-card reveal delay-2"><div class="feature-icon">⛨</div><h3>Backup & Restore</h3><p>Siapkan cadangan data agar lebih mudah dipulihkan saat pindah atau mengganti komputer.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section offline-section" id="offline">
+      <div class="container offline-grid">
+        <div class="offline-copy reveal">
+          <span class="eyebrow">Local-first system</span>
+          <h2>Internet bermasalah?<br>Kasir tetap jalan.</h2>
+          <p>ZePOS dirancang untuk berjalan secara lokal di komputer. Aktivitas kasir tidak harus bergantung pada koneksi internet atau server cloud, sehingga operasional toko bisa tetap berlangsung saat jaringan bermasalah.</p>
+          <div class="offline-list">
+            <div class="offline-point"><span>✓</span> Transaksi tanpa internet</div>
+            <div class="offline-point"><span>✓</span> Penyimpanan lokal</div>
+            <div class="offline-point"><span>✓</span> Tidak bergantung cloud</div>
+            <div class="offline-point"><span>✓</span> Tanpa biaya server bulanan</div>
+          </div>
+        </div>
+        <div class="offline-card reveal delay-2">
+          <div class="offline-status"><strong>Status Sistem ZePOS</strong><span class="status-badge">● LOCAL MODE</span></div>
+          <div class="offline-metric"><div class="metric-icon">⌘</div><div><b>Database lokal</b><small>Data tersimpan di perangkat Anda</small></div></div>
+          <div class="offline-metric"><div class="metric-icon">▣</div><div><b>Transaksi tetap tersedia</b><small>Operasional kasir tidak bergantung internet</small></div></div>
+          <div class="offline-metric"><div class="metric-icon">⛨</div><div><b>Kontrol data lebih dekat</b><small>Kelola backup sesuai kebutuhan toko</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container migration">
+        <div class="import-visual reveal">
+          <div class="excel-head"><b>Import Data Produk</b><span class="excel-badge">EXCEL READY</span></div>
+          <div class="sheet">
+            <div class="sheet-row"><span>Kode</span><span>Nama Barang</span><span>Stok</span><span>Harga</span></div>
+            <div class="sheet-row"><span>BRG001</span><span>Keyboard</span><span>24</span><span>125.000</span></div>
+            <div class="sheet-row"><span>BRG002</span><span>Mouse Wireless</span><span>18</span><span>85.000</span></div>
+            <div class="sheet-row"><span>BRG003</span><span>USB Hub</span><span>12</span><span>65.000</span></div>
+          </div>
+          <div class="import-arrow">↓</div>
+          <div class="import-success"><span>✓ Data siap diimpor ke ZePOS</span><span>100%</span></div>
+        </div>
+        <div class="migration-copy reveal delay-1">
+          <span class="eyebrow">Migrasi lebih mudah</span>
+          <h2>Punya data barang di Excel? Tinggal import.</h2>
+          <p>Tak perlu memasukkan produk satu per satu. Manfaatkan fitur import untuk mempercepat pemindahan daftar barang ke sistem kasir.</p>
+          <ul>
+            <li><span class="check">✓</span> Mempercepat input banyak produk</li>
+            <li><span class="check">✓</span> Membantu proses migrasi data</li>
+            <li><span class="check">✓</span> Data produk lebih mudah dikelola</li>
+            <li><span class="check">✓</span> Mendukung alur kerja berbasis spreadsheet</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section showcase" id="demo">
+      <div class="container">
+        <div class="section-heading reveal">
+          <span class="eyebrow">Kenali ZePOS</span>
+          <h2>Antarmuka yang dirancang<br>untuk pekerjaan sehari-hari.</h2>
+          <p>Jelajahi gambaran beberapa area utama aplikasi ZePOS. Ganti tab untuk melihat contoh tampilan.</p>
+        </div>
+        <div class="showcase-tabs reveal">
+          <button class="tab-btn active" data-tab="kasir">Kasir</button>
+          <button class="tab-btn" data-tab="produk">Manajemen Barang</button>
+          <button class="tab-btn" data-tab="laporan">Laporan</button>
+          <button class="tab-btn" data-tab="stok">Persediaan</button>
+        </div>
+        <div class="showcase-frame reveal">
+          <div class="showcase-toolbar">
+            <div class="pos-brandmark"><img src="LOGO PNG.png" alt="" /></div>
+            <div class="pos-nav">
+              <div class="pos-nav-item">⌂ <span>Beranda</span></div>
+              <div class="pos-nav-item active">▣ <span id="showcaseNavActive">Kasir</span></div>
+              <div class="pos-nav-item">▤ <span>Produk</span></div>
+              <div class="pos-nav-item">▥ <span>Stok</span></div>
+              <div class="pos-nav-item">▥ <span>Laporan</span></div>
+            </div>
+            <div class="pos-online">✓ Mode offline aktif</div>
+          </div>
+          <div class="showcase-screen">
+            <div class="showcase-content active" id="tab-kasir"><div class="demo-window"><div class="demo-top"><b>Transaksi Penjualan</b><span class="demo-chip">KASIR AKTIF</span></div><div class="demo-kpis"><div class="demo-kpi"><small>Total Belanja</small><strong>Rp 425.000</strong></div><div class="demo-kpi"><small>Jumlah Item</small><strong>3 Produk</strong></div><div class="demo-kpi"><small>Pembayaran</small><strong>Tunai</strong></div></div><div class="demo-table"><div class="demo-line"><span>Produk</span><span>Qty</span><span>Subtotal</span></div><div class="demo-line"><span>Keyboard Mechanical</span><span>1</span><b>Rp 250.000</b></div><div class="demo-line"><span>Mouse Wireless</span><span>2</span><b>Rp 175.000</b></div></div></div></div>
+            <div class="showcase-content" id="tab-produk"><div class="demo-window"><div class="demo-top"><b>Manajemen Barang</b><span class="demo-chip">1.240 PRODUK</span></div><div class="demo-kpis"><div class="demo-kpi"><small>Total Produk</small><strong>1.240</strong></div><div class="demo-kpi"><small>Kategori</small><strong>18</strong></div><div class="demo-kpi"><small>Barcode</small><strong>Aktif</strong></div></div><div class="demo-table"><div class="demo-line"><span>Nama Produk</span><span>Kode</span><span>Harga</span></div><div class="demo-line"><span>Keyboard Mechanical</span><span>BRG001</span><b>250.000</b></div><div class="demo-line"><span>Mouse Wireless</span><span>BRG002</span><b>87.500</b></div></div></div></div>
+            <div class="showcase-content" id="tab-laporan"><div class="demo-window"><div class="demo-top"><b>Ringkasan Laporan</b><span class="demo-chip">PERIODE INI</span></div><div class="demo-kpis"><div class="demo-kpi"><small>Penjualan</small><strong>Rp 24,8 jt</strong></div><div class="demo-kpi"><small>Transaksi</small><strong>486</strong></div><div class="demo-kpi"><small>Produk Terjual</small><strong>892</strong></div></div><div class="demo-table"><div class="demo-line"><span>Ringkasan</span><span>Nilai</span></div><div class="demo-line"><span>Total pemasukan</span><b>Rp 24.800.000</b></div><div class="demo-line"><span>Transaksi berhasil</span><b>486</b></div></div></div></div>
+            <div class="showcase-content" id="tab-stok"><div class="demo-window"><div class="demo-top"><b>Kontrol Persediaan</b><span class="demo-chip">STOK BARANG</span></div><div class="demo-kpis"><div class="demo-kpi"><small>Stok Tersedia</small><strong>3.820</strong></div><div class="demo-kpi"><small>Stok Menipis</small><strong>12</strong></div><div class="demo-kpi"><small>Perlu Dicek</small><strong>4</strong></div></div><div class="demo-table"><div class="demo-line"><span>Produk</span><span>Stok</span><span>Status</span></div><div class="demo-line"><span>Keyboard Mechanical</span><b>24</b><span style="color:#16865f">Tersedia</span></div><div class="demo-line"><span>USB Hub</span><b>3</b><span style="color:#d66b25">Menipis</span></div></div></div></div>
+          </div>
+        </div>
+        <p style="text-align:center;color:#8b94a2;font-size:10px;margin:14px 0 0">Preview interaktif ilustratif — tampilan dapat berbeda sesuai konfigurasi aplikasi.</p>
+      </div>
+    </section>
+
+    <section class="section" id="harga">  
+      <div class="container pricing-wrap">
+        <div class="pricing-copy reveal">
+          <span class="eyebrow">Harga spesial</span>
+          <h2>Mulai kelola toko lebih praktis dengan ZePOS.</h2>
+          <p>Dapatkan aplikasi kasir ZePOS dengan harga promo pembelian pertama. Bayar sekali sesuai ketentuan lisensi, lalu gunakan untuk membantu operasional toko sehari-hari.</p>
+          <p style="font-size:12px;color:#8993a2">Promo terbatas. Ketersediaan dan ketentuan promo mengikuti informasi resmi dari ZePOS.</p>
+        </div>
+        <div class="pricing-card reveal delay-2">
+          <span class="limited">PROMO PEMBELIAN PERTAMA</span>
+          <div class="price-label">Harga normal</div>
+          <div class="old-price">Rp1.200.000</div>
+          <div class="price">Rp800.000</div>
+          <span class="saving">HEMAT Rp400.000 · 33%</span>
+          <div class="price-divider"></div>
+          <ul class="included">
+            <li><span>✓</span> Aplikasi kasir ZePOS</li>
+            <li><span>✓</span> Manajemen produk dan stok</li>
+            <li><span>✓</span> Laporan penjualan</li>
+            <li><span>✓</span> Cetak nota dan label</li>
+            <li><span>✓</span> Dukungan operasional offline</li>
+            <li><span>✓</span> Import data produk dari Excel</li>
+          </ul>
+          <!-- Ganti nomor WhatsApp di bawah dengan nomor bisnis ZePOS, format internasional tanpa + -->
+          <a class="btn btn-primary" id="buyButton" href="https://wa.me/6281545386936?text=Halo%2C%20saya%20tertarik%20membeli%20ZePOS%20dengan%20harga%20promo%20Rp800.000." target="_blank" rel="noopener">Pesan ZePOS Sekarang <span>↗</span></a>
+          <p class="price-note">Hubungi tim ZePOS untuk informasi lisensi, instalasi, dan perangkat yang kompatibel.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq" style="padding-top:30px">
+      <div class="container">
+        <div class="section-heading reveal" style="text-align:center;margin-inline:auto">
+          <span class="eyebrow">Punya pertanyaan?</span><h2>Yang sering ditanyakan.</h2><p>Informasi singkat sebelum Anda mulai menggunakan ZePOS.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Apakah ZePOS bisa digunakan tanpa internet?</span><span>＋</span></button><div class="faq-answer"><p>Ya. Fitur inti operasional kasir dirancang berjalan secara lokal di komputer sehingga transaksi dapat dilakukan tanpa koneksi internet.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Apakah data toko disimpan di cloud?</span><span>＋</span></button><div class="faq-answer"><p>ZePOS menggunakan penyimpanan lokal pada komputer. Karena itu, pengguna perlu menjaga perangkat dan melakukan backup data secara berkala.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Apakah ZePOS mendukung printer dan barcode scanner?</span><span>＋</span></button><div class="faq-answer"><p>ZePOS ditujukan untuk mendukung kebutuhan perangkat kasir seperti printer nota, barcode scanner, dan cash drawer. Pastikan tipe perangkat yang digunakan termasuk perangkat yang kompatibel.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Bisakah saya memindahkan data barang dari Excel?</span><span>＋</span></button><div class="faq-answer"><p>ZePOS menyediakan fitur import Excel untuk membantu mempercepat input dan migrasi data produk. Ikuti format template yang disediakan aplikasi.</p></div></div>
+          <div class="faq-item reveal"><button class="faq-question" aria-expanded="false"><span>Bagaimana jika saya mengganti komputer?</span><span>＋</span></button><div class="faq-answer"><p>Siapkan backup database dari komputer lama, lalu ikuti prosedur pemulihan atau migrasi pada perangkat baru. Simpan backup di media terpisah agar lebih aman.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container reveal">
+        <h2>Waktunya operasional toko lebih praktis.</h2>
+        <p>Kelola transaksi dan stok dengan lebih teratur bersama ZePOS.</p>
+        <a class="btn" href="download.html">Download Aplikasi ZePOS <span>↓</span></a>
+        <a class="btn" href="#harga" style="margin-left:8px">Dapatkan ZePOS — Rp800.000 <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="#beranda"><span class="brand-mark">Z</span>ZePOS</a>
+          <p>Sistem kasir lokal untuk membantu bisnis mengelola transaksi, persediaan, dan laporan dengan lebih mudah.</p>
+        </div>
+        <div><h4>Jelajahi</h4><div class="footer-links"><a href="#fitur">Fitur ZePOS</a><a href="#offline">Sistem Offline</a><a href="#demo">Tampilan Aplikasi</a><a href="#harga">Harga</a><a href="download.html">Download Aplikasi</a></div></div>
+        <div><h4>Bantuan</h4><div class="footer-links"><a href="#faq">FAQ</a><a href="#harga">Informasi Pembelian</a><a href="mailto:hello@zeepos.example">Hubungi Kami</a></div></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="currentYear">2026</span> ZePOS by ZeProduction. All rights reserved.</span><span>LOCAL-FIRST · OFFLINE READY</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const yearNode = document.getElementById('currentYear');
+    if (yearNode) yearNode.textContent = new Date().getFullYear();
+
+    // Reveal-on-scroll animation
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Mobile navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.textContent = isOpen ? '✕' : '☰';
+    });
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.textContent = '☰';
+    }));
+
+    // Interactive application showcase tabs
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanels = document.querySelectorAll('.showcase-content');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(item => item.classList.remove('active'));
+        tabPanels.forEach(panel => panel.classList.remove('active'));
+        button.classList.add('active');
+        const panel = document.getElementById(`tab-${button.dataset.tab}`);
+        if (panel) panel.classList.add('active');
+        const navLabel = document.getElementById('showcaseNavActive');
+        if (navLabel) navLabel.textContent = ({ kasir: 'Kasir', produk: 'Produk', laporan: 'Laporan', stok: 'Stok' })[button.dataset.tab] || 'Kasir';
+      });
+    });
+
+    // Accessible accordion FAQ
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.closest('.faq-item');
+        const answer = item.querySelector('.faq-answer');
+        const isOpen = item.classList.toggle('open');
+        question.setAttribute('aria-expanded', String(isOpen));
+        answer.style.maxHeight = isOpen ? `${answer.scrollHeight}px` : '0px';
+      });
+    });
+
+
+    // Hero POS demo: product filters, add-to-cart, quantity controls and checkout feedback.
+    (() => {
+      const productGrid = document.getElementById('posProducts');
+      const cartNode = document.getElementById('cartItems');
+      const countNode = document.getElementById('cartCount');
+      const subtotalNode = document.getElementById('cartSubtotal');
+      const totalNode = document.getElementById('cartTotal');
+      const toast = document.getElementById('posToast');
+      if (!productGrid || !cartNode) return;
+
+      const money = value => 'Rp' + value.toLocaleString('id-ID');
+      const cart = new Map([
+        ['Kopi Susu Gula Aren', { price: 18000, qty: 3 }],
+        ['Air Mineral 600 ml', { price: 5000, qty: 2 }],
+        ['Roti Cokelat', { price: 9000, qty: 1 }],
+        ['Keripik Singkong', { price: 12000, qty: 1 }]
+      ]);
+      let toastTimer;
+      const notify = message => {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 1500);
+      };
+      const renderCart = () => {
+        cartNode.innerHTML = '';
+        let units = 0, subtotal = 0;
+        cart.forEach((item, name) => {
+          units += item.qty;
+          subtotal += item.price * item.qty;
+          const row = document.createElement('div');
+          row.className = 'cart-row';
+          row.dataset.name = name;
+          row.innerHTML = `
+            <div class="cart-row-top"><span></span><b>${money(item.price * item.qty)}</b></div>
+            <div class="cart-row-bottom"><span>${money(item.price)}</span>
+              <div class="qty-controls">
+                <button type="button" data-action="minus" aria-label="Kurangi ${name}">−</button>
+                <span>${item.qty}</span>
+                <button type="button" data-action="plus" aria-label="Tambah ${name}">＋</button>
+              </div>
+            </div>`;
+          row.querySelector('.cart-row-top span').textContent = name;
+          cartNode.appendChild(row);
+        });
+        countNode.textContent = `${units} item`;
+        subtotalNode.textContent = money(subtotal);
+        totalNode.textContent = money(subtotal);
+      };
+      productGrid.addEventListener('click', event => {
+        const card = event.target.closest('.pos-product');
+        if (!card || card.disabled) return;
+        const name = card.dataset.name;
+        const price = Number(card.dataset.price);
+        const current = cart.get(name) || { price, qty: 0 };
+        current.qty += 1;
+        cart.set(name, current);
+        renderCart();
+        notify(`${name} ditambahkan`);
+      });
+      cartNode.addEventListener('click', event => {
+        const button = event.target.closest('button[data-action]');
+        if (!button) return;
+        const row = button.closest('.cart-row');
+        const name = row.dataset.name;
+        const item = cart.get(name);
+        if (!item) return;
+        if (button.dataset.action === 'plus') item.qty += 1;
+        if (button.dataset.action === 'minus') item.qty -= 1;
+        if (item.qty <= 0) cart.delete(name);
+        else cart.set(name, item);
+        renderCart();
+      });
+      document.querySelectorAll('.pos-cat').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.pos-cat').forEach(item => item.classList.remove('selected'));
+          button.classList.add('selected');
+          const category = button.dataset.category;
+          productGrid.querySelectorAll('.pos-product').forEach(card => {
+            card.hidden = category !== 'Semua' && card.dataset.category !== category;
+          });
+        });
+      });
+      document.getElementById('posPay').addEventListener('click', () => {
+        notify('Demo pembayaran — transaksi siap diproses');
+      });
+      renderCart();
+    })();
+
+    // Smooth anchor fallback for browsers with reduced native support
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', event => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          event.preventDefault();
+          target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

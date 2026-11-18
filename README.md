@@ -43,6 +43,6 @@ Any updates pushed to the configured GitHub repository can be deployed through t
 
 **Simplify Your Business, Manage Your Sales.**
 
-Built with passion by **Zeez**.
+Built with passion by **zeProduction**.
 
 © 2026 ZePOS. All Rights Reserved.
